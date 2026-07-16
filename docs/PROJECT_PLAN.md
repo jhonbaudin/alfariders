@@ -6,12 +6,15 @@ Crear el centro digital oficial de Alfa Riders Peru para comunicar identidad, pu
 
 ## Alcance actual
 
-La implementacion inicial es un sitio publico estatico deployable en GitHub Pages. Incluye estructura visual, secciones principales, assets de marca y documentacion de evolucion.
+La implementacion inicial es un sitio publico estatico deployable en GitHub Pages. Incluye landing institucional, paginas separadas de rutas, comunidad, clinicas, contacto y merchandising, assets de marca y documentacion de evolucion.
 
 ## Fase 1 - MVP publico
 
 - Inicio con identidad de marca.
-- Secciones de rutas, comunidad, clinicas, galerias, merchandising y contacto.
+- Paginas separadas para comunidad, clinicas y contacto.
+- Seccion de galeria institucional en el landing.
+- Pagina `/rutas` para la ruta mensual y el historico.
+- Pagina `/merchandising` para catalogo de merchandising Alfa.
 - Uso del logo oficial.
 - Uso visual de flyers como referencia grafica.
 - SEO base y Open Graph inicial.

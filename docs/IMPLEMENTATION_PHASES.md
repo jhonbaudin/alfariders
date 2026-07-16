@@ -6,6 +6,8 @@ Complejidad: baja.
 
 - Crear frontend publico.
 - Usar logo y linea visual.
+- Separar landing, rutas y merchandising.
+- Crear catalogo inicial de productos Alfa.
 - Publicar en GitHub Pages.
 - Documentar arquitectura futura.
 

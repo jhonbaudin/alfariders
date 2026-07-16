@@ -2,13 +2,21 @@
 
 ## Implementado en version estatica
 
-- `#inicio`
-- `#rutas`
-- `#comunidad`
-- `#clinicas`
-- `#galerias`
-- `#merch`
-- `#contacto`
+- `/`
+- `/rutas`
+- `/merchandising`
+- `/comunidad`
+- `/clinicas`
+- `/#galerias`
+- `/contacto`
+
+## Separacion de contenido
+
+- El landing comunica identidad, accesos principales, rutas, merch y galeria institucional.
+- Comunidad, clinicas y contacto viven en paginas separadas.
+- La informacion mensual de ruta vive en `/rutas`.
+- La ruta activa se muestra en `/rutas` y debe pasar al historico cuando se publique la siguiente.
+- El catalogo de merchandising vive en `/merchandising`.
 
 ## Rutas recomendadas para fase dinamica
 

@@ -1,6 +1,32 @@
 # Deploy en GitHub Pages
 
-Este proyecto genera archivos estaticos en `dist` y puede publicarse con `gh-pages`.
+Este proyecto genera archivos estaticos en `dist` y puede publicarse en GitHub Pages de dos formas.
+
+## Deploy automatico con GitHub Actions
+
+El workflow esta en:
+
+```bash
+.github/workflows/deploy.yml
+```
+
+Se ejecuta automaticamente con cada push a `main` y tambien manualmente desde la pestaña `Actions` usando `workflow_dispatch`.
+
+### Configuracion de GitHub Pages
+
+1. En GitHub, abrir `Settings > Pages`.
+2. En `Build and deployment`, seleccionar `GitHub Actions`.
+3. Guardar la configuracion.
+
+El workflow:
+
+1. Instala dependencias con `npm ci`.
+2. Ejecuta `npm run build`.
+3. Genera `dist/404.html` desde `dist/index.html` para soportar rutas como `/rutas` y `/merchandising`.
+4. Sube `dist` como artifact de Pages.
+5. Publica el sitio con `actions/deploy-pages`.
+
+## Deploy manual con gh-pages
 
 ## Requisitos
 
@@ -27,13 +53,10 @@ npm run deploy
 gh-pages -d dist
 ```
 
-## Configuracion de GitHub
-
-1. En GitHub, abrir `Settings > Pages`.
-2. Seleccionar deploy desde la rama `gh-pages`.
-3. Guardar la configuracion.
+Para esta modalidad, en `Settings > Pages` se debe seleccionar deploy desde la rama `gh-pages`.
 
 ## Notas tecnicas
 
 - `vite.config.ts` usa `base: './'` para que los assets funcionen en GitHub Pages aunque el sitio viva bajo `/nombre-del-repo/`.
+- `postbuild` copia `dist/index.html` a `dist/404.html` para mantener las rutas internas del sitio estatico.
 - GitHub Pages no ejecuta backend. Las funciones de CMS, membresia, pagos, webhooks y contenido privado requieren otra plataforma para la fase dinamica.
