@@ -133,6 +133,66 @@ ul {
   text-transform: uppercase;
 }
 
+.header-social {
+  display: none;
+}
+
+.menu-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  min-width: 44px;
+  min-height: 44px;
+  padding: 0 0.75rem;
+  appearance: none;
+  border: 1px solid var(--line);
+  background: rgba(5, 5, 5, 0.36);
+  color: var(--white);
+  font: inherit;
+  font-size: 0.82rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.menu-toggle:hover,
+.menu-toggle:focus-visible {
+  border-color: var(--yellow);
+  color: var(--yellow);
+}
+
+.mobile-nav {
+  grid-column: 1 / -1;
+  display: grid;
+  gap: 0.5rem;
+  padding-top: 0.85rem;
+  border-top: 1px solid var(--line);
+}
+
+.mobile-nav[hidden] {
+  display: none;
+}
+
+.mobile-nav a {
+  display: flex;
+  align-items: center;
+  min-height: 48px;
+  padding: 0.8rem 0.9rem;
+  border: 1px solid var(--line);
+  background: rgba(5, 5, 5, 0.58);
+  color: var(--white);
+  font-size: 0.9rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.mobile-nav a:hover,
+.mobile-nav a:focus-visible {
+  border-color: var(--yellow);
+  color: var(--yellow);
+}
+
 .desktop-nav a:hover,
 .desktop-nav a:focus-visible,
 .icon-link:hover,
@@ -581,7 +641,8 @@ p {
 .brand-gallery-card {
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
+  align-items: center;
+  justify-content: center;
   gap: 1.2rem;
   padding: 1.4rem;
   background:
@@ -607,6 +668,7 @@ p {
   font-family: var(--font-display);
   font-size: 2.6rem;
   font-weight: 900;
+  text-align: center;
   text-transform: uppercase;
 }
 
@@ -1108,6 +1170,15 @@ body.modal-open {
     justify-content: center;
   }
 
+  .header-social {
+    display: block;
+  }
+
+  .menu-toggle,
+  .mobile-nav {
+    display: none;
+  }
+
   .brand-mark {
     width: 72px;
     height: 44px;
@@ -1179,6 +1250,24 @@ body.modal-open {
   .page-hero {
     padding-right: 1rem;
     padding-left: 1rem;
+  }
+
+  .page-hero-logo {
+    display: none;
+  }
+
+  .teaser-card,
+  .module-card,
+  .phase-card,
+  .info-list {
+    text-align: center;
+  }
+
+  .teaser-card svg,
+  .module-card svg,
+  .phase-card svg {
+    margin-right: auto;
+    margin-left: auto;
   }
 
   h1 {

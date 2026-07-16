@@ -7,10 +7,12 @@ import {
   Flag,
   Gauge,
   Mail,
+  Menu,
   MapPin,
   Mountain,
   ShieldCheck,
   ShoppingBag,
+  X,
 } from 'lucide-react';
 
 import logoWhite from './assets/logos/logo-alfa-riders-white.png';
@@ -321,12 +323,28 @@ function App() {
 }
 
 function Header() {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  const closeMobileMenu = () => {
+    setIsMobileMenuOpen(false);
+  };
+
   return (
     <header className="site-header" aria-label="Navegacion principal">
-      <a className="brand-link" href={getAppHref('/')} aria-label="Alfa Riders Peru">
+      <a className="brand-link" href={getAppHref('/')} aria-label="Alfa Riders Peru" onClick={closeMobileMenu}>
         <img src={logoHorizontal} alt="" className="brand-mark" />
         <span>Alfa Riders Peru</span>
       </a>
+      <button
+        className="menu-toggle"
+        type="button"
+        aria-controls="mobile-menu"
+        aria-expanded={isMobileMenuOpen}
+        onClick={() => setIsMobileMenuOpen((isOpen) => !isOpen)}
+      >
+        {isMobileMenuOpen ? <X aria-hidden="true" size={20} /> : <Menu aria-hidden="true" size={20} />}
+        <span>{isMobileMenuOpen ? 'Cerrar' : 'Menu'}</span>
+      </button>
       <nav className="desktop-nav" aria-label="Secciones">
         {navigation.map((item) => (
           <a key={item.href} href={getAppHref(item.href)}>
@@ -334,7 +352,16 @@ function Header() {
           </a>
         ))}
       </nav>
-      <SocialLinks compact />
+      <div className="header-social">
+        <SocialLinks compact />
+      </div>
+      <nav id="mobile-menu" className="mobile-nav" aria-label="Menu mobile" hidden={!isMobileMenuOpen}>
+        {navigation.map((item) => (
+          <a key={item.href} href={getAppHref(item.href)} onClick={closeMobileMenu}>
+            {item.label}
+          </a>
+        ))}
+      </nav>
     </header>
   );
 }
