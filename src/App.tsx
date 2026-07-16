@@ -48,6 +48,24 @@ const socialLinks = [
   { label: 'YouTube', Icon: YouTubeIcon },
 ];
 
+const appBasePath = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+function getAppHref(path: string) {
+  if (!path.startsWith('/')) {
+    return path;
+  }
+
+  if (!appBasePath) {
+    return path;
+  }
+
+  if (path === '/') {
+    return `${appBasePath}/`;
+  }
+
+  return `${appBasePath}${path}`;
+}
+
 const principles = [
   'Rutas planificadas con briefing, puntos de control y lectura del terreno.',
   'Conduccion responsable para pilotos de motos doble proposito.',
@@ -305,13 +323,13 @@ function App() {
 function Header() {
   return (
     <header className="site-header" aria-label="Navegacion principal">
-      <a className="brand-link" href="/" aria-label="Alfa Riders Peru">
+      <a className="brand-link" href={getAppHref('/')} aria-label="Alfa Riders Peru">
         <img src={logoHorizontal} alt="" className="brand-mark" />
         <span>Alfa Riders Peru</span>
       </a>
       <nav className="desktop-nav" aria-label="Secciones">
         {navigation.map((item) => (
-          <a key={item.href} href={item.href}>
+          <a key={item.href} href={getAppHref(item.href)}>
             {item.label}
           </a>
         ))}
@@ -356,7 +374,7 @@ function HomePage() {
           <h2 id="route-teaser-title">Cada mes una salida nueva. Cada ruta queda en archivo.</h2>
         </div>
         <div className="teaser-grid">
-          <a className="teaser-card" href="/rutas">
+          <a className="teaser-card" href={getAppHref('/rutas')}>
             <MapPin aria-hidden="true" size={24} />
             <h3>Ruta del mes</h3>
             <p>Ficha tecnica, kilometraje, nivel, terreno, horarios y puntos generales en una pagina dedicada.</p>
@@ -365,7 +383,7 @@ function HomePage() {
               <ArrowRight aria-hidden="true" size={18} />
             </span>
           </a>
-          <a className="teaser-card accent-card" href="/merchandising">
+          <a className="teaser-card accent-card" href={getAppHref('/merchandising')}>
             <ShoppingBag aria-hidden="true" size={24} />
             <h3>Merch Alfa</h3>
             <p>Prendas y accesorios con presencia sobria para ruta, comunidad y uso diario.</p>
@@ -386,7 +404,12 @@ function HomePage() {
           {modules.map((module) => {
             const Icon = module.icon;
             return (
-              <a className="module-card" href={module.href} key={module.title} aria-label={`Abrir ${module.title}`}>
+              <a
+                className="module-card"
+                href={getAppHref(module.href)}
+                key={module.title}
+                aria-label={`Abrir ${module.title}`}
+              >
                 <Icon aria-hidden="true" size={24} />
                 <h3>{module.title}</h3>
                 <p>{module.text}</p>
@@ -596,7 +619,7 @@ function CommunityPage() {
           <h2 id="community-links-title">Rutas y entrenamiento como base de comunidad.</h2>
         </div>
         <div className="teaser-grid">
-          <a className="teaser-card" href="/rutas">
+          <a className="teaser-card" href={getAppHref('/rutas')}>
             <MapPin aria-hidden="true" size={24} />
             <h3>Rutas</h3>
             <p>Salidas mensuales con ficha tecnica, nivel, terreno y archivo historico.</p>
@@ -605,7 +628,7 @@ function CommunityPage() {
               <ArrowRight aria-hidden="true" size={18} />
             </span>
           </a>
-          <a className="teaser-card accent-card" href="/clinicas">
+          <a className="teaser-card accent-card" href={getAppHref('/clinicas')}>
             <ShieldCheck aria-hidden="true" size={24} />
             <h3>Clinicas</h3>
             <p>Espacios de tecnica, seguridad y preparacion para pilotos doble proposito.</p>
@@ -839,7 +862,7 @@ function Footer() {
         <span>alfariders.pe · @alfa_riders_peru</span>
       </div>
       <SocialLinks compact />
-      <a href="/" aria-label="Volver al inicio">
+      <a href={getAppHref('/')} aria-label="Volver al inicio">
         <ExternalLink aria-hidden="true" size={18} />
       </a>
     </footer>

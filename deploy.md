@@ -57,6 +57,7 @@ Para esta modalidad, en `Settings > Pages` se debe seleccionar deploy desde la r
 
 ## Notas tecnicas
 
-- `vite.config.ts` usa `base: './'` para que los assets funcionen en GitHub Pages aunque el sitio viva bajo `/nombre-del-repo/`.
+- `vite.config.ts` usa `base: '/alfariders/'` para que assets y rutas internas funcionen bajo `https://jhonbaudin.github.io/alfariders/`.
+- Los links internos se generan con `import.meta.env.BASE_URL`, por eso `/rutas` se publica como `/alfariders/rutas`.
 - `postbuild` copia `dist/index.html` a `dist/404.html` para mantener las rutas internas del sitio estatico.
 - GitHub Pages no ejecuta backend. Las funciones de CMS, membresia, pagos, webhooks y contenido privado requieren otra plataforma para la fase dinamica.
